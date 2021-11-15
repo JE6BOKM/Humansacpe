@@ -34,7 +34,6 @@ class Common(Configuration):
         # Your apps
         "apps.users",
         "apps.core",
-        "apps.humanscape",
     )
 
     # django-alauth
