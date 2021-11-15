@@ -1,5 +1,7 @@
 import os
 
+import dj_database_url
+
 from .common import Common
 
 
@@ -35,3 +37,12 @@ class Production(Common):
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa
         "rest_framework.renderers.JSONRenderer",
     ]
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.getenv(
+                "DATABASE_URL",
+                "postgres://localuser:password@postgres:5432/crud",
+            ),
+            conn_max_age=int(os.getenv("POSTGRES_CONN_MAX_AGE", 600)),
+        )
+    }

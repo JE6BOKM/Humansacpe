@@ -86,14 +86,9 @@ class Common(Configuration):
 
     ADMINS = (("Author", "nevvjann@gmail.com"),)
 
-    # Postgres
+    LOCAL_DB_PATH = os.path.join(os.path.dirname(BASE_DIR), "local_db.sqlite3")
     DATABASES = {
-        "default": dj_database_url.config(
-            default=os.getenv(
-                "DATABASE_URL", "postgres://localuser:password@postgres:5432/crud"
-            ),
-            conn_max_age=int(os.getenv("POSTGRES_CONN_MAX_AGE", 600)),
-        )
+        "default": dj_database_url.config(default=f"sqlite://///{LOCAL_DB_PATH}")
     }
 
     # General
