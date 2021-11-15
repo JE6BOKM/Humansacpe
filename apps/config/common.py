@@ -34,6 +34,7 @@ class Common(Configuration):
         # Your apps
         "apps.users",
         "apps.core",
+        "apps.humanscape",
     )
 
     # django-alauth
@@ -242,3 +243,6 @@ class Common(Configuration):
             "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         ),
     }
+
+    # data.go.kr secret key
+    DATA_SECRET_KEY = os.getenv("DATA_SECRET_KEY")

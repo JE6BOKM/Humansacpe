@@ -21,7 +21,7 @@ class ClinicalInfo(models.Model):
     department = models.CharField(max_length=80)
     responsible_institution = models.CharField(max_length=120)
     total_target_number = models.IntegerField(null=True)
-    research_duration = models.DurationField(null=True)
+    research_duration = models.CharField(max_length=10, null=True)
     research_type = models.CharField(max_length=10)
     clinical_trial_stage = models.CharField(max_length=20, null=True)
     research_scope = models.CharField(max_length=10)
