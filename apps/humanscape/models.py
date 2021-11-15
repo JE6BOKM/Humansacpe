@@ -12,6 +12,8 @@ class ClinicalInfo(models.Model):
     # research_type             연구종류	            string
     # clinical_trial_stage      임상시험단계(연구모형)	string
     # research_scope            연구범위	            string
+    # created_at                최초 업로드             datetime
+    # updated_at                업데이트 시각           datetime
     """
 
     proejct_number = models.CharField(max_length=10, primary_key=True)
@@ -24,6 +26,7 @@ class ClinicalInfo(models.Model):
     clinical_trial_stage = models.CharField(max_length=20, null=True)
     research_scope = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "clinical_infos"
