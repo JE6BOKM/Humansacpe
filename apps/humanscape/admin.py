@@ -1,7 +1,9 @@
 from django.contrib import admin
 
+from apps.humanscape.models import ClinicalInfo
 
-@admin.register("ClinicalInfo")
+
+@admin.register(ClinicalInfo)
 class ClinicalInfoAdmin(admin.ModelAdmin):
     """Clinical Info Admin"""
 
