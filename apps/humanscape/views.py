@@ -1,8 +1,7 @@
 from django_filters import rest_framework as filters
-
-from rest_framework.response import Response
-from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from apps.humanscape.filters import ClinialInfoRecentlyUpdateFilter
