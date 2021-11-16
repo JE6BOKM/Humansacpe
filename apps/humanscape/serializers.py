@@ -1,8 +1,8 @@
+from app.humanscape.model import ClinicalInfo
 from rest_framework import serializers
 
-from .model import ClinicalInfo
 
 class ClinicalInfoSerialzers(serializers.ModelSerializer):
     class Meta:
         model = ClinicalInfo
-        fields = '__all__'
+        fields = "__all__"
