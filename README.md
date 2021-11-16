@@ -81,7 +81,16 @@
 
 ### 수집한 임상정보에 대한 API
 
+- 공공데이터API에서 DB로 받아온 데이터를 불러옵니다.
+- pk값 : project_number (과제번호)를 pathParameter로 받아와서 데이터를 불러옵니다.
+
 ### 수집한 임상정보 리스트 API
+
+### 수집한 임상정보 리스트 API
+
+### 임상정보 검색 API 제공
+- query parameter로 'trail_name'을 받아 과제명을 검색하면 필터링해줍니다.
+- 검색결과 값이없다면 전체 리스트를 불러옵니다.
 
 ## API TEST 방법
 

@@ -81,7 +81,7 @@ class Common(Configuration):
 
     ALLOWED_HOSTS = ["*"]
     ROOT_URLCONF = "apps.urls"
-    SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+    SECRET_KEY = "a4+-6ld_4l2-fig_6j4ecr8xtxkf6y@9p%569ejaid**0"
     WSGI_APPLICATION = "apps.wsgi.application"
 
     # Email
@@ -250,7 +250,7 @@ class Common(Configuration):
     }
 
     # data.go.kr secret key
-    DATA_SECRET_KEY = os.getenv("DATA_SECRET_KEY")
+    DATA_SECRET_KEY = "ynPiVMu%2BuslSFBTQEaWIFmv4VBMZa3NnWBiPKYFl9g%2BaJqWHjVIptXxhF2K5r3L141F7ha3IIDhGMidZ8zr4CA%3D%3D"
 
     # django crontab
     CRONJOBS_LOG_PATH = os.path.join(os.path.dirname(BASE_DIR), "log/apiCron.log")
