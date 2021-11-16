@@ -3,8 +3,8 @@ from django.db import models
 
 class ClinicalInfo(models.Model):
     """
-    # proejct_number            과제번호	            string
-    # proejct_name              과제명	                string
+    # project_number            과제번호	            string
+    # project_name              과제명	                string
     # department                진료과	                string
     # responsible_institution   연구책임기관	        string
     # total_target_number       전체목표연구대상자수	int
@@ -16,12 +16,12 @@ class ClinicalInfo(models.Model):
     # updated_at                업데이트 시각           datetime
     """
 
-    proejct_number = models.CharField(max_length=10, primary_key=True)
-    proejct_name = models.CharField(max_length=500)
+    project_number = models.CharField(max_length=10, primary_key=True)
+    project_name = models.CharField(max_length=500)
     department = models.CharField(max_length=80)
     responsible_institution = models.CharField(max_length=120)
     total_target_number = models.IntegerField(null=True)
-    research_duration = models.DurationField(null=True)
+    research_duration = models.CharField(max_length=20, null=True, blank=True)
     research_type = models.CharField(max_length=10)
     clinical_trial_stage = models.CharField(max_length=20, null=True)
     research_scope = models.CharField(max_length=10)

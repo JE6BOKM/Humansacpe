@@ -31,9 +31,12 @@ class Common(Configuration):
         "allauth",
         "allauth.account",
         "allauth.socialaccount",
+        # django-crontab
+        "django_crontab",
         # Your apps
         "apps.users",
         "apps.core",
+        "apps.humanscape",
     )
 
     # django-alauth
@@ -242,3 +245,18 @@ class Common(Configuration):
             "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         ),
     }
+
+    # data.go.kr secret key
+    DATA_SECRET_KEY = os.getenv("DATA_SECRET_KEY")
+
+    # django crontab
+    CRONJOBS_LOG_PATH = os.path.join(os.path.dirname(BASE_DIR), "log/apiCron.log")
+    CRONJOBS = [
+        (
+            "15 */12 * * 0",
+            "django.core.managemeny.call_command",
+            ["api"],
+            {},
+            f">> {CRONJOBS_LOG_PATH} 2>&1",
+        ),
+    ]
