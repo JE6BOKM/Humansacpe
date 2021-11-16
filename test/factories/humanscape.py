@@ -32,9 +32,7 @@ class ClinicalInfoFactory(DjangoModelFactory):
     @classmethod
     def _create(cls, target_class, *args, **kwargs):
         created_at = kwargs.pop("created_at", None)
-        updated_at = kwargs.pop("updated_at", None)
         obj = super(ClinicalInfoFactory, cls)._create(target_class, *args, **kwargs)
         obj.created_at = created_at
-        obj.updated_at = updated_at
         obj.save()
         return obj
