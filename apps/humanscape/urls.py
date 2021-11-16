@@ -1,10 +1,10 @@
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 
-from apps.humanscape.views import ClinicalInfoViewset
+from apps.humanscape.views import ClinicalInfoViewset, RecentlyUpdateListView
 
 app_name = "humanscape"
 
-router = DefaultRouter()
-router.register(r"trials", ClinicalInfoViewset())
-
-urlpatterns = router.urls
+urlpatterns = [
+    path("humanscape/<str:pk>/", ClinicalInfoViewset.as_view()),
+    path("humanscape/latest/", RecentlyUpdateListView.as_view()),
+]
