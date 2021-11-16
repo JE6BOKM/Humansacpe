@@ -15,7 +15,7 @@ class ClinicalInfoViewset(RetrieveModelMixin, ListModelMixin, GenericViewSet):
 
     def filter_queryset(self, queryset):
         if self.action == "list":
-            keyword = self.request.query_params.get("trail_name")
+            keyword = self.request.query_params.get("project_name")
             if keyword:
                 queryset = self.get_queryset().filter(project_name__icontains=keyword)
         return super().filter_queryset(queryset)
