@@ -121,7 +121,16 @@
 
 ## API TEST 방법
 
-...
+```
+$ pytest --disable-pytest-warnings -v
+```
+<img  src="https://user-images.githubusercontent.com/38058085/142032209-e97930fd-8a2b-4f1a-99e1-c5c6a5720bdd.png">
+
+```
+$ pytest --cov
+```
+<img src="https://user-images.githubusercontent.com/38058085/142032202-9361ccf9-566e-419e-b4f0-ec191299cc68.png">
+
 
 <br>
 
