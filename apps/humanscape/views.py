@@ -12,16 +12,23 @@ from apps.humanscape.serializers import (
 )
 
 
-class ClinicalInfoViewset(RetrieveModelMixin, GenericViewSet):
+class ClinicalInfoViewset(RetrieveModelMixin, ListModelMixin, GenericViewSet):
     queryset = ClinicalInfo.objects.all()
     serializer_class = ClinicalInfoSerialzers
     permission_classes = [AllowAny]
 
-    def get(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         instance = self.get_object(kwargs["pk"])
         serializer = self.get_serializer(instance)
 
         return Response(serializer.data)
+
+    def filter_queryset(self, queryset):
+        if self.action == "list":
+            keyword = self.request.query_params.get("trail_name")
+            if keyword:
+                queryset = self.get_queryset().filter(project_name__icontains=keyword)
+        return super().filter_queryset(queryset)
 
 
 class RecentlyUpdateListView(ListModelMixin, GenericViewSet):
