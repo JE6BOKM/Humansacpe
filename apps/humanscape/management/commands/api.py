@@ -50,18 +50,20 @@ class Command(BaseCommand):
         )
 
         count = {"total": total_count, "created": 0, "updated": 0}
-        for page in range(max_page):
+        create_list = []
+        for page in range(1, max_page + 1):
             payload = {"page": page, "perPage": per_page}
             res = requests.get(url, params=payload)
             json_data = res.json()
+
             for data in json_data.get("data"):
                 project = get_project_info(data)
                 clinical_info = ClinicalInfo.objects.filter(
                     project_number=project.get("project_number")
                 )
                 if not clinical_info:
-                    # 없는경우 object 생성
-                    ClinicalInfo.objects.create(**project)
+                    # 없는경우 create list에 추가
+                    create_list.append(ClinicalInfo(**project))
                     count["created"] += 1
                 else:
                     # 있는경우 데이터 확인 후 업데이트
@@ -71,6 +73,10 @@ class Command(BaseCommand):
                     if old_data != project:
                         clinical_info.update(**project)
                         count["updated"] += 1
+        # 한번에 생성
+        if len(create_list) > 0:
+            ClinicalInfo.objects.bulk_create(create_list)
+
         self.stdout.write(
             self.style.SUCCESS(
                 f"{count.get('created')} Info(s) Created.  "
