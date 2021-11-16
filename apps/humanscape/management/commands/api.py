@@ -42,6 +42,13 @@ class Command(BaseCommand):
         per_page = 20
         payload = {"page": page, "perPage": per_page}
         res = requests.get(url, params=payload)
+        if res.status_code != 200:
+            self.stdout.write(
+                self.style.ERROR(
+                    f"Your secret_key is not correct. your key is {secret_key}"
+                )
+            )
+            return
         total_count = res.json().get("totalCount")
         max_page = (
             total_count // per_page
