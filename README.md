@@ -60,7 +60,7 @@
 
 ## 🏄‍♀️ 모델링
 
-![5 drawio](https://user-images.githubusercontent.com/8315252/139969615-38f01f08-cc1c-427e-87a6-09671525525b.png)
+![스크린샷 2021-11-16 오후 1 00 17](https://user-images.githubusercontent.com/5153352/141899305-f6638fbc-0319-477c-ba30-818363133291.png)
 
 ## API
 
