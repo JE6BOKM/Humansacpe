@@ -7,9 +7,3 @@ class ClinicalInfoSerialzers(serializers.ModelSerializer):
     class Meta:
         model = ClinicalInfo
         fields = "__all__"
-
-
-class RecentlyUpdateListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ClinicalInfo
-        fields = "__all__"
