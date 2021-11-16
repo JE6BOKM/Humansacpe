@@ -25,7 +25,7 @@ WORKDIR /code
 
 COPY ./docker/images/prod/start /start
 RUN chmod +x /start
-
+RUN echo "!!!!!!!!!!!!!!!!"
 
 EXPOSE 8000
 

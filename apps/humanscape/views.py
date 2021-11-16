@@ -1,4 +1,5 @@
 from django_filters import rest_framework as filters
+from rest_framework import viewsets
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response

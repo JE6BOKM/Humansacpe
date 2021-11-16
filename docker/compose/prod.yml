@@ -8,7 +8,7 @@ volumes:
 services:
   postgres:
     restart: always
-    image: "${ECR_REPOSITORY_URI}/postgres:latest"
+    # image: "${ECR_REPOSITORY_URI}/postgres:latest"
     build:
       context: ../../
       dockerfile: docker/images/prod/Postgres.Dockerfile
@@ -23,7 +23,7 @@ services:
 
   nginx:
     restart: always
-    image: "${ECR_REPOSITORY_URI}/nginx:latest"
+    # image: "${ECR_REPOSITORY_URI}/nginx:latest"
     build:
       context: ../../
       dockerfile: docker/images/prod/Nginx.Dockerfile
@@ -36,7 +36,7 @@ services:
 
   django:
     restart: always
-    image: "${ECR_REPOSITORY_URI}/django:latest"
+    # image: "${ECR_REPOSITORY_URI}/django:latest"
     environment:
       - DJANGO_SECRET_KEY=prod
     build:
