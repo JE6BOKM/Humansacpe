@@ -4,16 +4,17 @@
   - 기업명 : 휴먼스케이프
   - [휴먼스케이프](https://humanscape.io/kr/index.html)
   - [wanted 채용공고 링크](https://www.wanted.co.kr/wd/41413)
+  - 과제 수행 기간(2021.11.15 ~ 2021.11.17)
 
 ## 💁‍♀️ Members
 
-| 이름   | github                                    | 담당 기능   |
-| ------ | ----------------------------------------- | ----------- |
-| 신재민 | [shinjam](https://github.com/shinjam)     | 테스트 코드 |
-| 신우주 | [shinwooju](https://github.com/shinwooju) | 상품 CRUD   |
-| 최혜림 | [rimi0108](https://github.com/rimi0108)   | 로그인      |
-| 강성묵 | [miranaky](https://github.com/miranaky)   | 로그인      |
-| 김민규 | [SkyStar-K](https://github.com/SkyStar-K) | 상품 CRUD   |
+| 이름   | github                                    | 담당 기능    |
+| ------ | ----------------------------------------- | ------------ |
+| 신재민 | [shinjam](https://github.com/shinjam)     | 테스트 코드  |
+| 신우주 | [shinwooju](https://github.com/shinwooju) | 상품 CRUD    |
+| 최혜림 | [rimi0108](https://github.com/rimi0108)   | 로그인       |
+| 강성묵 | [miranaky](https://github.com/miranaky)   | 임상정보수집 |
+| 김민규 | [SkyStar-K](https://github.com/SkyStar-K) | 상품 CRUD    |
 
 ## ⭐ 과제 내용
 
@@ -59,7 +60,7 @@
 
 ## 🏄‍♀️ 모델링
 
-![5 drawio](https://user-images.githubusercontent.com/8315252/139969615-38f01f08-cc1c-427e-87a6-09671525525b.png)
+![스크린샷 2021-11-16 오후 1 00 17](https://user-images.githubusercontent.com/5153352/141899305-f6638fbc-0319-477c-ba30-818363133291.png)
 
 ## API
 
@@ -68,6 +69,15 @@
 ## 구현 기능
 
 ### 임상정보를 수집하는 batch task
+
+[질병관리청\_임상연구 과제정보](https://www.data.go.kr/tcs/dss/selectFileDataDetailView.do?publicDataPk=3074271) 에서 제공하는 데이터를 수집합니다.
+
+- 공공데이터API에서 임상연구 과제정보를 받아옵니다.
+  - 새로운 데이터가 발견되면 저장합니다.
+  - 기존 데이터가 변경되면 업데이트 합니다.
+- 주기적으로 데이터를 받아옵니다.
+  - [django-crontab](https://github.com/kraiz/django-crontab)을 활용하여 주기적으로 데이터를 확인합니다.(매주 일요일 0시15분,12시15분)
+  - 확인 시 데이터가 변경되면 그에 맞게 생성/업데이트 합니다.
 
 ### 수집한 임상정보에 대한 API
 
@@ -81,15 +91,19 @@
 
 ### Local 개발 및 테스트용
 
-    ``` bash
-        git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
-        poetry install
-        #원하는 secret key 넣어서 사용.
-        export DJANGO_SECRET_KEY=a4+-6ld_4l2-fig_6j4ecr8xtxkf6y@9p%569ejaid**0
-        poetry run python manage.py migrate
-        poetry run python manage.py createsuperuser
-        poetry run python manage.py runserver
-    ```
+```bash
+git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
+poetry install
+#원하는 secret key 넣어서 사용.
+export DJANGO_SECRET_KEY=a4+-6ld_4l2-fig_6j4ecr8xtxkf6y@9p%569ejaid**0
+#data.go.kr 에서 받은 secretKey사용
+export DATA_SECRET_KEY={your_secretKey}
+poetry run python manage.py makemigrations
+poetry run python manage.py migrate
+poetry run python manage.py createsuperuser
+poetry run python manage.py api
+poetry run python manage.py runserver
+```
 
 ### 배포용
 
