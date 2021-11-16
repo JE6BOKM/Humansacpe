@@ -6,17 +6,32 @@
   - [wanted 채용공고 링크](https://www.wanted.co.kr/wd/41413)
   - 과제 수행 기간(2021.11.15 ~ 2021.11.17)
 
+<br>
+
 ## 💁‍♀️ Members
 
-| 이름   | github                                    | 담당 기능    |
-| ------ | ----------------------------------------- | ------------ |
-| 신재민 | [shinjam](https://github.com/shinjam)     | 테스트 코드  |
-| 신우주 | [shinwooju](https://github.com/shinwooju) | 상품 CRUD    |
-| 최혜림 | [rimi0108](https://github.com/rimi0108)   | 로그인       |
-| 강성묵 | [miranaky](https://github.com/miranaky)   | 임상정보수집 |
-| 김민규 | [SkyStar-K](https://github.com/SkyStar-K) | 상품 CRUD    |
+| 이름   | github                                    | 담당 기능                   |
+| ------ | ----------------------------------------- | --------------------------- |
+| 신재민 | [shinjam](https://github.com/shinjam)     | 테스트 코드                 |
+| 신우주 | [shinwooju](https://github.com/shinwooju) | 임상정보 확인 및 검색, 배포 |
+| 강성묵 | [miranaky](https://github.com/miranaky)   | 임상정보 수집               |
+| 김민규 | [SkyStar-K](https://github.com/SkyStar-K) | 임상정보 최근 리스트        |
+| 최혜림 | [rimi0108](https://github.com/rimi0108)   | 개인 사정으로 불참          |
+
+<br>
+
+## 🔗 배포 주소
+
+[http://54.180.94.60/api/v1/humanscape/](http://54.180.94.60/api/v1/humanscape/)
+
+<br>
 
 ## ⭐ 과제 내용
+
+<details>
+    <summary>자세히</summary>
+
+<!-- summary 아래 한칸 공백 두고 내용 삽입 -->
 
 ### [필수 포함 사항]
 
@@ -51,6 +66,9 @@
   - 최근 일주일내에 업데이트(변경사항이 있는) 된 임상정보 리스트
     - pagination 기능
 - **Test 구현시 가산점이 있습니다.**
+</details>
+
+<br>
 
 ## 사용 기술 및 tools
 
@@ -58,19 +76,23 @@
 > - Deploy : <img src="https://img.shields.io/badge/AWS_EC2-232F3E?style=for-the-badge&logo=Amazon&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker-0052CC?style=for-the-badge&logo=Docker&logoColor=white"/>
 > - ETC : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"/>
 
+<br>
+
 ## 🏄‍♀️ 모델링
 
 ![스크린샷 2021-11-16 오후 1 00 17](https://user-images.githubusercontent.com/5153352/141899305-f6638fbc-0319-477c-ba30-818363133291.png)
 
 ## API
 
-[링크-postman document](https://documenter.getpostman.com/view/16042359/UVBzmpLX)
+[링크-postman document](https://documenter.getpostman.com/view/13670333/UVCB94CC)
+
+<br>
 
 ## 구현 기능
 
 ### 임상정보를 수집하는 batch task
 
-[질병관리청\_임상연구 과제정보](https://www.data.go.kr/tcs/dss/selectFileDataDetailView.do?publicDataPk=3074271) 에서 제공하는 데이터를 수집합니다.
+- [질병관리청\_임상연구 과제정보](https://www.data.go.kr/tcs/dss/selectFileDataDetailView.do?publicDataPk=3074271) 에서 제공하는 데이터를 수집합니다.
 
 - 공공데이터API에서 임상연구 과제정보를 받아옵니다.
   - 새로운 데이터가 발견되면 저장합니다.
@@ -86,24 +108,37 @@
 
 ### 수집한 임상정보 리스트 API
 
+- 공공데이터API에서 수집한 데이터 중 최근 1주일 동안에 변경되거나 새롭게 생성된 데이터 리스트를 보여줍니다.
+- 데이터는 10개씩 보여줍니다.
+
 ### 임상정보 검색 API 제공
-- query parameter로 'trail_name'을 받아 과제명을 검색하면 필터링해줍니다.
-- 검색결과 값이없다면 전체 리스트를 불러옵니다.
+
+- query parameter로 'project_name'을 받아 과제명을 검색하면 필터링해줍니다.
+- 검색결과 값이 없다면 전체 리스트를 불러옵니다.
+- 데이터는 10개씩 보여줍니다.
+
+<br>
 
 ## API TEST 방법
 
 ...
 
+<br>
+
 ## 설치 및 실행 방법
 
+<br>
+
 ### Local 개발 및 테스트용
+
+<br>
 
 ```bash
 git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
 poetry install
 #원하는 secret key 넣어서 사용.
 export DJANGO_SECRET_KEY=a4+-6ld_4l2-fig_6j4ecr8xtxkf6y@9p%569ejaid**0
-#data.go.kr 에서 받은 secretKey사용
+#data.go.kr 에서 받은 일반 인증키(Encoding) 사용
 export DATA_SECRET_KEY={your_secretKey}
 poetry run python manage.py makemigrations
 poetry run python manage.py migrate
@@ -114,9 +149,23 @@ poetry run python manage.py runserver
 
 ### 배포용
 
-...
+<br>
 
-## 폴더 구조
+```bash
+git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
+
+#두 파일에 접속 환경 변수 설정
+ls -a .envs
+.envs/.prod.django
+.envs/.prod.postgres
+
+# docker/compose/prod.yml 파일에 API_HOST setting
+
+# docker-compose를 사용하여 배포
+docker-compose -f docker/compose/prod.yml up --build -d
+```
+
+<br>
 
 # Reference
 
