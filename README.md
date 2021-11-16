@@ -72,7 +72,7 @@
 
 ## 사용 기술 및 tools
 
-> - Back-End : <img src="https://img.shields.io/badge/Python 3.8-3776AB?style=for-the-badge&logo=Python&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django 3.2-092E20?style=for-the-badge&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/mysql 8.0-1b9e41?style=for-the-badge&logo=Mysql&logoColor=white"/>
+> - Back-End : <img src="https://img.shields.io/badge/Python 3.9-3776AB?style=for-the-badge&logo=Python&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Django 3.2-092E20?style=for-the-badge&logo=Django&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/postgresql 13.1-0064a5?style=for-the-badge&logo=Postgresql&logoColor=white"/>
 > - Deploy : <img src="https://img.shields.io/badge/AWS_EC2-232F3E?style=for-the-badge&logo=Amazon&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Docker-0052CC?style=for-the-badge&logo=Docker&logoColor=white"/>
 > - ETC : <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"/>
 
@@ -134,17 +134,17 @@
 <br>
 
 ```bash
-git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
-poetry install
+$ git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
+$ poetry install
 #원하는 secret key 넣어서 사용.
-export DJANGO_SECRET_KEY=a4+-6ld_4l2-fig_6j4ecr8xtxkf6y@9p%569ejaid**0
+$ export DJANGO_SECRET_KEY=a4+-6ld_4l2-fig_6j4ecr8xtxkf6y@9p%569ejaid**0
 #data.go.kr 에서 받은 일반 인증키(Encoding) 사용
-export DATA_SECRET_KEY={your_secretKey}
-poetry run python manage.py makemigrations
-poetry run python manage.py migrate
-poetry run python manage.py createsuperuser
-poetry run python manage.py api
-poetry run python manage.py runserver
+$ export DATA_SECRET_KEY={your_secretKey}
+$ poetry run python manage.py makemigrations
+$ poetry run python manage.py migrate
+$ poetry run python manage.py createsuperuser
+$ poetry run python manage.py api
+$ poetry run python manage.py runserver
 ```
 
 ### 배포용
@@ -152,17 +152,17 @@ poetry run python manage.py runserver
 <br>
 
 ```bash
-git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
+$ git clone https://github.com/JE6BOKM/Humanscape.git && cd Humanscape
 
 #두 파일에 접속 환경 변수 설정
-ls -a .envs
+$ ls -a .envs
 .envs/.prod.django
 .envs/.prod.postgres
 
 # docker/compose/prod.yml 파일에 API_HOST setting
 
 # docker-compose를 사용하여 배포
-docker-compose -f docker/compose/prod.yml up --build -d
+$ docker-compose -f docker/compose/prod.yml up --build -d
 ```
 
 <br>
