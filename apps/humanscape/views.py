@@ -1,14 +1,11 @@
-from django_filters import rest_framework as filters
+from datetime import datetime, timedelta
+
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet
 
-from apps.humanscape.filters import ClinialInfoRecentlyUpdateFilter
 from apps.humanscape.models import ClinicalInfo
-from apps.humanscape.serializers import (
-    ClinicalInfoSerialzers,
-    RecentlyUpdateListSerializer,
-)
+from apps.humanscape.serializers import ClinicalInfoSerialzers
 
 
 class ClinicalInfoViewset(RetrieveModelMixin, ListModelMixin, GenericViewSet):
@@ -18,7 +15,7 @@ class ClinicalInfoViewset(RetrieveModelMixin, ListModelMixin, GenericViewSet):
 
     def filter_queryset(self, queryset):
         if self.action == "list":
-            keyword = self.request.query_params.get("trail_name")
+            keyword = self.request.query_params.get("project_name")
             if keyword:
                 queryset = self.get_queryset().filter(project_name__icontains=keyword)
         return super().filter_queryset(queryset)
@@ -26,7 +23,12 @@ class ClinicalInfoViewset(RetrieveModelMixin, ListModelMixin, GenericViewSet):
 
 class RecentlyUpdateListView(ListModelMixin, GenericViewSet):
     queryset = ClinicalInfo.objects.all()
-    serializer_class = RecentlyUpdateListSerializer
+    serializer_class = ClinicalInfoSerialzers
     permission_classes = [AllowAny]
-    filter_backends = [filters.DjangoFilterBackend]
-    filterset_class = ClinialInfoRecentlyUpdateFilter
+
+    def filter_queryset(self, queryset):
+        if self.action == "list":
+            time = datetime.now() - timedelta(weeks=1)
+            queryset = queryset.filter(updated_at__gte=time)
+            queryset = queryset.order_by("updated_at")
+        return super().filter_queryset(queryset)
